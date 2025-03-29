@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvmsmnxgrjuoq"]
+
+[ext_resource type="Texture2D" uid="uid://drtsnsva0ykbi" path="res://art/PlayerSprites.png" id="1_6j0tc"]
+
+[node name="Player" type="CharacterBody2D"]
+texture_filter = 1
+position = Vector2(-1120, -790)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1187, 830)
+scale = Vector2(0.499999, 0.249992)
+texture = ExtResource("1_6j0tc")
+hframes = 4
+vframes = 7
