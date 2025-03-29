@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b3p71aoyho7lt"]
+
+[node name="Label" type="Label"]
+anchors_preset = -1
+anchor_left = 1.115
+anchor_top = 1.525
+anchor_right = 1.115
+anchor_bottom = 1.525
+offset_left = -922.48
+offset_top = -816.2
+offset_right = -823.48
+offset_bottom = -767.2
+text = "Hola Mundo!
+"
