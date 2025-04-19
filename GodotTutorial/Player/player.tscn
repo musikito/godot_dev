@@ -1,9 +1,27 @@
-[gd_scene load_steps=12 format=3 uid="uid://c5kr7w4gnvv5d"]
+[gd_scene load_steps=15 format=3 uid="uid://c5kr7w4gnvv5d"]
 
 [ext_resource type="Script" path="res://Player/Scripts/player.gd" id="1_1pxvs"]
 [ext_resource type="Texture2D" uid="uid://dduxry1srw2n" path="res://Player/sprites/ExamplePlayerSprite.png" id="1_o0egj"]
+[ext_resource type="Script" path="res://Player/Scripts/player_state_machine.gd" id="3_gbi2y"]
+[ext_resource type="Script" path="res://Player/Scripts/state_idle.gd" id="4_pskvm"]
+[ext_resource type="Script" path="res://Player/Scripts/state_walk.gd" id="5_3expb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h73cj"]
+
+[sub_resource type="Animation" id="Animation_mggtc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_2qq08"]
 resource_name = "idle_down"
@@ -22,8 +40,10 @@ tracks/0/keys = {
 "values": [0, 1, 2]
 }
 
-[sub_resource type="Animation" id="Animation_mggtc"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_tobwk"]
+resource_name = "idle_side"
+length = 0.4
+loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -31,10 +51,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [14, 15, 16]
 }
 
 [sub_resource type="Animation" id="Animation_yba0v"]
@@ -52,23 +72,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [7, 8, 9]
-}
-
-[sub_resource type="Animation" id="Animation_tobwk"]
-resource_name = "idle_side"
-length = 0.4
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [14, 15, 16]
 }
 
 [sub_resource type="Animation" id="Animation_84vtr"]
@@ -148,3 +151,12 @@ hframes = 21
 libraries = {
 "": SubResource("AnimationLibrary_un0n2")
 }
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_gbi2y")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_pskvm")
+
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource("5_3expb")
